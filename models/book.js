@@ -1,53 +1,61 @@
 const { Schema, model } = require('mongoose');
 const Joi = require('joi');
 
-const productSchema = Schema(
+const bookSchema = Schema(
   {
-    id: {
-      type: Number,
-      required: true,
-    },
     title: {
       type: String,
       required: true,
     },
+
+    author: {
+      type: String,
+      required: true,
+    },
+
+    description: {
+      type: String,
+      required: true,
+    },
+
     price: {
       type: Number,
       required: true,
     },
-    category: {
+
+    publisher: {
       type: String,
-      required: true,
     },
-    image: {
+
+    book_image: {
       type: String,
-      required: true,
     },
-    owner: {
-      type: Schema.Types.ObjectId,
-      ref: 'user',
-      required: true,
+
+    book_review_link: {
+      type: String,
     },
+
     qty: {
       type: Number,
       required: true,
+      default: 1,
     },
   },
   { versionKey: false, timestamps: true }
 );
 
-const Product = model('product', productSchema);
+const Book = model('book', bookSchema);
 
-const joiProductSchema = Joi.object({
+const joiBookSchema = Joi.object({
   id: Joi.number().required(),
   title: Joi.string().required(),
   price: Joi.number().required(),
   category: Joi.string().required(),
-  image: Joi.string().required(),
+  avatarUrl: Joi.string().required(),
   qty: Joi.number().required(),
 });
 
 module.exports = {
-  Product,
-  joiProductSchema,
+  Book,
+  joiBookSchema,
 };

@@ -1,14 +1,23 @@
-const { Product } = require('../../models/product');
+const cloudinaryImgUpload = require('../../helpers/cloudinaryImgUpload');
+const { Book } = require('../../models/book');
 
 const addToBasket = async (rec, res) => {
   const { _id } = rec.user;
-  const { data } = rec.body;
+  const { body } = rec;
+  const { file } = rec;
 
-  const product = await Product.create({ ...data, owner: _id });
+  if (file) {
+    const { avatarUrl } = await cloudinaryImgUpload(rec);
+    body.avatarUrl = avatarUrl;
+  } else {
+    body.avatarUrl = data.avatar;
+  }
+
+  const Book = await Book.create({ ...body, owner: _id });
 
   res
     .status(201)
-    .json({ message: 'The product was added to the basket', data: product });
+    .json({ message: 'The Book was added to the basket', body: Book });
 };
 
 module.exports = addToBasket;
