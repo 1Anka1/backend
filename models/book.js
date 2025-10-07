@@ -35,13 +35,17 @@ const bookSchema = Schema(
       type: String,
     },
 
+    category: {
+      type: String,
+    },
+
     qty: {
       type: Number,
       required: true,
       default: 1,
     },
   },
-  { versionKey: false, timestamps: true }
+  { versionKey: false, timestamps: true },
 );
 
 const Book = model('book', bookSchema);
