@@ -3,10 +3,10 @@ const { Book } = require('../../models/book');
 const { BASE_URL, API_KEY } = process.env;
 
 const getAllBooks = async (rec, res) => {
-  const getAllBooks = await axios.get(`${BASE_URL}/v3/lists/overview.json?api-key=${API_KEY}`);
-  const dataBook = getAllBooks.data.results.books;
+  const books = await axios.get(`${BASE_URL}/overview.json?api-key=${API_KEY}`);
+  const lists = books.data.results.lists;
 
-  const mappedBooks = dataBook.flatMap((list) =>
+  const mappedBooks = lists.flatMap((list) =>
     list.books.map((book) => ({
       title: book.title,
       author: book.author,
