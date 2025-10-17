@@ -4,6 +4,6 @@ const getAllBooks = require('../controlers/getAllBooks/getAllBooks');
 
 const booksRotes = express.Router();
 
-booksRotes.get('/', ctrWrapper(getAllBooks));
+booksRotes.get('/:value', ctrWrapper(getAllBooks));
 
 module.exports = booksRotes;
