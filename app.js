@@ -9,6 +9,7 @@ const authRoutes = require('./routes/authRoutes');
 const basketRoutes = require('./routes/basketRoutes');
 const booksRotes = require('./routes/bookRoutes');
 const categoryRotes = require('./routes/categoryRoutes');
+const searchRoutes = require('./routes/searchRoutes');
 
 const app = express();
 app.use(cors());
@@ -19,6 +20,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/basket', basketRoutes);
 app.use('/api/books', booksRotes);
 app.use('/api/category', categoryRotes);
+app.use('/api/search', searchRoutes);
 
 app.use((_, res) => {
   res.status(404).json({ message: 'Not found' });

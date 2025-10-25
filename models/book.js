@@ -39,6 +39,14 @@ const bookSchema = Schema(
       type: String,
     },
 
+    list_name_encoded: {
+      type: String,
+    },
+
+    list_id: {
+      type: Number,
+    },
+
     qty: {
       type: Number,
       required: true,
