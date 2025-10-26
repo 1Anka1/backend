@@ -5,8 +5,10 @@ const getAllBooks = async (req, res) => {
 
   const allBooks = await Book.find({});
 
+  console.log(allBooks);
+
   if (value === 'categories') {
-    const categories = allBooks.data.map(({ display_name, list_name_encoded, list_id }) => ({
+    const categories = allBooks.map(({ display_name, list_name_encoded, list_id }) => ({
       category: display_name,
       encode: list_name_encoded,
       id: list_id,
