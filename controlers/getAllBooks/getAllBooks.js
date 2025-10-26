@@ -5,14 +5,16 @@ const getAllBooks = async (req, res) => {
 
   const allBooks = await Book.find({});
 
-  console.log(allBooks);
-
   if (value === 'categories') {
-    const categories = allBooks.map(({ display_name, list_name_encoded, list_id }) => ({
-      category: display_name,
-      encode: list_name_encoded,
-      id: list_id,
-    }));
+    const categories = Array.from(
+      new Map(
+        allBooks.map(({ category, list_name_encoded, list_id }) => [
+          list_id,
+          { category, encode: list_name_encoded, id: list_id },
+        ]),
+      ).values(),
+    );
+
     return res
       .status(200)
       .json({ message: 'Successful! You got all categories', data: categories });
