@@ -8,6 +8,7 @@ const register = async (rec, res) => {
   if (user) {
     throw new Conflict('Email is use');
   }
+
   const newUser = new User({ name: rec.body.name, email: rec.body.email });
 
   await newUser.setPassword(rec.body.password);

@@ -6,16 +6,12 @@ const register = require('../controlers/auth/register');
 const login = require('../controlers/auth/login');
 const auth = require('../middlewars/auth');
 const logout = require('../controlers/auth/logout');
+const refreshUser = require('../controlers/auth/refreshUser');
 
 const authRoutes = express.Router();
-authRoutes.post(
-  '/register',
-  validation(joiRegisterSchema),
-  ctrWrapper(register)
-);
-
+authRoutes.post('/register', validation(joiRegisterSchema), ctrWrapper(register));
 authRoutes.post('/login', validation(joiLoginSchema), ctrWrapper(login));
-
 authRoutes.post('/logout', auth, ctrWrapper(logout));
+authRoutes.post('/refresh', auth, ctrWrapper(refreshUser));
 
 module.exports = authRoutes;

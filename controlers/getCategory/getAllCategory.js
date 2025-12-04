@@ -4,8 +4,6 @@ const getBooksByCategory = async (req, res) => {
   const { categoryName } = req.params;
 
   const results = await Book.find({ list_name_encoded: categoryName });
-  console.log(results);
-
   res.status(200).json({ message: 'Successful', data: results });
 };
 
