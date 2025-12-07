@@ -50,7 +50,7 @@ const bookSchema = Schema(
     qty: {
       type: Number,
       required: true,
-      default: 1,
+      default: 10,
     },
   },
   { versionKey: false, timestamps: true },
